@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .std-button {
+    @apply  text-white
+            text-sm
+            font-semibold
+            py-2
+            px-4
+            mr-1
+            rounded-md
+            bg-lime-500
+            hover:bg-lime-400
+            hover:shadow-md
+            hover:shadow-lime-200
+            active:bg-white
+            active:text-lime-500;
+  }
+}
+
+body {
+  @apply bg-gray-500
+}
