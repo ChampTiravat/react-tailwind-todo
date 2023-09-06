@@ -1,9 +1,9 @@
 import * as React from "react";
 
 export const Button = (props: any) => {
-  const { label } = props;
+  const { label, ...otherProps }: {label: string} = props;
   return (
-    <button {...props} className="std-button">
+    <button {...otherProps} className="std-button">
       {label.toUpperCase()}
     </button>
   );
