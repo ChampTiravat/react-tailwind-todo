@@ -1,15 +1,28 @@
 import * as React from "react";
 
-export const SideBar = () => {
+export const SideBar = (props: any) => {
+  const { setShowSidebar, show, ...otherProps } = props;
   return (
     <>
-      <aside className="flex flex-col justify-between items-center py-5 px-3 w-[300px] h-screen bg-white fixed top-0 left-0 bottom-0 drop-shadow-xl z-50">
+      <aside
+        {...otherProps}
+        className={
+          `animate-sidebarFadeIn flex-col justify-between
+          items-center py-5 px-3 w-[300px] h-screen
+          bg-white fixed top-0 left-0 bottom-0
+          drop-shadow-xl z-50`
+        }
+      >
         <h1 className="text-center text-2xl font-bold text-lime-600 mx-0 mt-3 mb-3">
           Application Name
         </h1>
-        <Button fullWidth label="SETTINGS" />
+        <Button
+          onClick={() => setShowSidebar(!show)}
+          fullWidth
+          label="TOOGLE SIDEBAR"
+        />
       </aside>
-      {/* <div className="w-full h-full fixed top-0 left-0 right-0 bottom-0 bg-black opacity-75 z-40"></div> */}
+      <div className="w-full h-full fixed top-0 left-0 right-0 bottom-0 bg-black opacity-75 z-40"></div>
     </>
   );
 };
@@ -37,10 +50,22 @@ export const Card = ({ children }: { children: React.ReactNode }) => (
 );
 
 const App = () => {
+  const [showSidebar, setShowSidebar] = React.useState<boolean>(true);
   return (
     <>
-      <SideBar />
       <div className="flex flex-col items-center justify-around w-full min-h-[1000px] py-1 px-3 m-0 top-0 left-0">
+        {showSidebar && (
+          <SideBar show={showSidebar} setShowSidebar={setShowSidebar} />
+        )}
+
+        <Card>
+          <Button
+            onClick={() => setShowSidebar(!showSidebar)}
+            fullWidth
+            label="SHOW SIDEBAR"
+          />
+        </Card>
+
         <Card>
           <h1 className="text-center text-2xl font-bold  mx-0 mt-3 mb-3">
             Information
@@ -91,13 +116,6 @@ const App = () => {
               <Button label="CANCEL" />
             </div>
           </div>
-        </Card>
-
-        <Card>
-          <Button label="CANCEL" />
-          <Button label="CANCEL" />
-          <Button label="CANCEL" />
-          <Button label="CANCEL" />
         </Card>
 
         <h1 className="my-4 text-2xl font-medium text-white">Hello</h1>
