@@ -1,6 +1,10 @@
 import * as React from "react";
 
-export const SideBar = (props: any) => {
+export interface ISidebarProps {
+  setShowSidebar?: () => void;
+  show: boolean;
+}
+export const SideBar = (props: ISidebarProps | any) => {
   const { setShowSidebar, show, ...otherProps } = props;
   return (
     <>
